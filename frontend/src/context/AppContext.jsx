@@ -14,12 +14,17 @@ export const AppContextProvider = ({ children }) => {
   //to store seller auth by default false
   const [isSeller, setIsSeller] = useState(false);
 
+  // state to show login form
+  const [showUserLogin, setShowUserLogin] = useState(false);
+
   const contextValue = {
     navigate,
     user,
     setUser,
     isSeller,
     setIsSeller,
+    showUserLogin,
+    setShowUserLogin,
   };
   return (
     <AppContext.Provider value={contextValue}>{children}</AppContext.Provider>
