@@ -22,17 +22,17 @@ const Navbar = () => {
     <nav className="flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 py-4 border-b border-gray-300 bg-white relative transition-all">
       <NavLink to="/" className="flex items-center gap-2" onClick={() => setOpen(false)}>
         <img className="h-9" src="ecom.svg" alt="dummyLogoColored" />
-        <h3 className="font-bold md:text-xl text-red-800">MEGACART</h3>
+        <h3 className="font-bold md:text-xl text-red-600">MEGACART</h3>
       </NavLink>
 
       {/* Desktop Menu */}
       <div className="hidden sm:flex items-center gap-8">
-        <NavLink to="/" className="font-semibold text-red-700 md:text-xl">
+        <NavLink to="/" className="font-semibold text-red-600 md:text-xl bg-red-50 px-4 rounded-md">
           Home
         </NavLink>
         <NavLink
           to="/products"
-          className="font-semibold text-red-700 md:text-xl"
+          className="font-semibold text-red-600 md:text-xl bg-red-50 px-4 rounded-md"
         >
           All Products
         </NavLink>
