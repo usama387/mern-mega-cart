@@ -8,6 +8,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { Separator } from "@/components/ui/separator";
 
 const MainBanner = () => {
   // Array of carousel images
@@ -83,7 +84,7 @@ const MainBanner = () => {
             </div>
 
             {/* RIGHT SIDE IMAGE - Now a carousel */}
-            <div className="relative aspect-video lg:aspect-square overflow-hidden rounded-3xl bg-gradient-to-br from-red-50 to-red-100 p-6 shadow-xl">
+            <div className="relative aspect-video lg:aspect-square overflow-hidden rounded-3xl bg-gradient-to-br from-red-50 to-red-100 p-6 shadow-xl hidden md:block">
               <Carousel className="w-full h-full" opts={{ loop: true }}>
                 <CarouselContent>
                   {carouselImages.map((image, index) => (
@@ -110,6 +111,7 @@ const MainBanner = () => {
           </div>
         </div>
       </section>
+      <Separator />
     </div>
   );
 };
