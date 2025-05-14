@@ -2,6 +2,7 @@ import React from "react";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { categories } from "@/assets/assets";
 import { useAppContext } from "@/context/AppContext";
+import { Separator } from "@/components/ui/separator";
 
 const Collections = () => {
   const { navigate } = useAppContext();
@@ -38,6 +39,7 @@ const Collections = () => {
           </Card>
         ))}
       </div>
+      <Separator className="my-8"/>
     </div>
   );
 };
