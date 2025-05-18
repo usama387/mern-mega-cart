@@ -1,11 +1,13 @@
 import React from "react";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { categories } from "@/assets/assets";
-import { useAppContext } from "@/context/AppContext";
 import { Separator } from "@/components/ui/separator";
+import { useNavigate } from "react-router-dom";
 
 const Collections = () => {
-  const { navigate } = useAppContext();
+
+  // hook to navigate user
+  const navigate = useNavigate();
 
   return (
     <div className="px-6 md:px-16 lg:px-24 xl:px-32 py-8">
@@ -14,7 +16,7 @@ const Collections = () => {
       </h2>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
-        {categories.map((category, index) => (
+        {categories.slice(0, 6).map((category, index) => (
           <Card
             key={index}
             className="group cursor-pointer border-none shadow-lg hover:shadow-xl transition duration-300 ease-in-out rounded-2xl"
@@ -39,7 +41,7 @@ const Collections = () => {
           </Card>
         ))}
       </div>
-      <Separator className="my-8"/>
+      <Separator className="my-8" />
     </div>
   );
 };
