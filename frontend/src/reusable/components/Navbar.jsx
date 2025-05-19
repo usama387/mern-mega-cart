@@ -1,44 +1,59 @@
 import { assets } from "@/assets/assets";
 import { Button } from "@/components/ui/button";
-import { useAppContext } from "@/context/AppContext";
 import { ShoppingBag, User } from "lucide-react";
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setShowUserLogin } from "@/redux/showLoginSlice";
+import { setUser } from "@/redux/authSlice";
 
 const Navbar = () => {
   // State to manage mobile menu open/close
   const [open, setOpen] = useState(false);
 
-  //state from context api that holds user data
-  const { user, setUser, setShowUserLogin, navigate } = useAppContext();
+  //state from redux that holds user data
+  const { user } = useSelector((store) => store?.auth);
+
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   //function to logout triggered by logout button
   const handleLogout = async () => {
-    setUser(null);
+    dispatch(setUser(null));
     navigate("/");
   };
 
   return (
     <nav className="flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 py-4 border-b border-gray-300 bg-white relative transition-all">
-      <NavLink to="/" className="flex items-center gap-2" onClick={() => setOpen(false)}>
+      <NavLink
+        to="/"
+        className="flex items-center gap-2"
+        onClick={() => setOpen(false)}
+      >
         <img className="h-9" src="ecom.svg" alt="dummyLogoColored" />
-        <h3 className="font-bold md:text-xl text-red-600">MEGACART</h3>
+        <h3 className="font-semibold md:text-xl bg-red-700 text-white px-4 py-1 rounded-lg">
+          MEGAMART
+        </h3>
       </NavLink>
 
       {/* Desktop Menu */}
       <div className="hidden sm:flex items-center gap-8">
-        <NavLink to="/" className="font-semibold text-red-600 md:text-xl bg-red-50 px-4 rounded-md">
+        <NavLink
+          to="/"
+          className="font-medium md:text-xl bg-red-700 text-white px-4 py-1 rounded-lg"
+        >
           Home
         </NavLink>
         <NavLink
           to="/products"
-          className="font-semibold text-red-600 md:text-xl bg-red-50 px-4 rounded-md"
+          className="font-medium md:text-xl bg-red-700 text-white px-4 py-1 rounded-lg"
         >
           All Products
         </NavLink>
 
         {/* search icon div */}
-        <div className="hidden lg:flex items-center text-sm gap-2 border border-gray-300 px-3 rounded-md ring-2 ring-red-500">
+        <div className="hidden lg:flex items-center text-sm gap-2 border border-gray-300 px-3 rounded-full ring-2 ring-red-700">
           <input
             className="py-1.5 w-full bg-transparent outline-none placeholder-gray-500"
             type="text"
@@ -48,9 +63,12 @@ const Navbar = () => {
         </div>
 
         {/* Cart div */}
-        <div className="relative cursor-pointer" onClick={() => navigate("/cart")}>
+        <div
+          className="relative cursor-pointer"
+          onClick={() => navigate("/cart")}
+        >
           <ShoppingBag className="w-6 opacity-80" />
-          <button className="absolute -top-2 -right-3 text-sm text-white bg-red-400 w-[18px] h-[18px] rounded-full">
+          <button className="absolute -top-2 -right-3 text-sm text-white bg-red-700 w-[18px] h-[18px] rounded-full">
             5
           </button>
         </div>
@@ -59,7 +77,7 @@ const Navbar = () => {
           <Button
             variant="default"
             className="!px-6 !py-2 transition duration-300 hover:scale-105"
-            onClick={() => setShowUserLogin(true)}
+            onClick={() => dispatch(setShowUserLogin(true))}
           >
             Login
           </Button>
@@ -132,7 +150,7 @@ const Navbar = () => {
               className="!px-6 !py-2 transition duration-300 hover:scale-105"
               onClick={() => {
                 setOpen(false);
-                setShowUserLogin(true);
+                dispatch(setShowUserLogin(true));
               }}
             >
               Login
